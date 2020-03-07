@@ -25,3 +25,12 @@ C:\Users\admin\Desktop\rSaleorder版本\rSaleorder\Utils\obj\Debug\Utils.csproj.
 C:\Users\admin\Desktop\rSaleorder版本\rSaleorder\Utils\obj\Debug\Utils.csproj.CopyComplete
 C:\Users\admin\Desktop\rSaleorder版本\rSaleorder\Utils\obj\Debug\Utils.dll
 C:\Users\admin\Desktop\rSaleorder版本\rSaleorder\Utils\obj\Debug\Utils.pdb
+E:\gitfirstfile\rSaleorder\Utils\bin\Debug\Utils.dll
+E:\gitfirstfile\rSaleorder\Utils\bin\Debug\Utils.pdb
+E:\gitfirstfile\rSaleorder\Utils\bin\Debug\Newtonsoft.Json.dll
+E:\gitfirstfile\rSaleorder\Utils\bin\Debug\Newtonsoft.Json.xml
+E:\gitfirstfile\rSaleorder\Utils\obj\Debug\Utils.csprojAssemblyReference.cache
+E:\gitfirstfile\rSaleorder\Utils\obj\Debug\Utils.csproj.CoreCompileInputs.cache
+E:\gitfirstfile\rSaleorder\Utils\obj\Debug\Utils.csproj.CopyComplete
+E:\gitfirstfile\rSaleorder\Utils\obj\Debug\Utils.dll
+E:\gitfirstfile\rSaleorder\Utils\obj\Debug\Utils.pdb
