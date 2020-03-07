@@ -1,0 +1,4 @@
+﻿.layui-inline input[searfield="true"] {
+    display: inline-block;
+    width: 30%;
+}

@@ -1,0 +1,193 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>BrandView</title>
+    <link href="~/Layui/css/layui.css" rel="stylesheet" />
+    <script src="~/Layui/layui.js"></script>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/show/js/crmbase.js"></script>
+</head>
+<body>
+
+    <div>
+        搜索：
+        <div class="layui-inline" id="searbrandinp">
+            <input class="layui-input" placeholder="品牌名称" searfield="true" name="brandname" autocomplete="off">
+        </div>
+        <button class="layui-btn" data-type="reload" id="searbrand" lay-event="reloadnew">搜索</button>
+        <button class="layui-btn" onclick="addbrand()">增加</button>
+        <button class="layui-btn " id="btnedit">编辑</button>
+        <button class="layui-btn" id="btndelbrand">删除</button>
+    </div>
+    <div id="addbranddlg" style="display:none;">
+        <form class="layui-form" action="" lay-filter="example">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">品牌名称</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="Id" class="layui-hide">
+                        <input type="text" name="brandname" lay-verify="required" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">排序值</label>
+                    <div class="layui-input-inline">
+                        <input type="text" value="0" name="sort" lay-verify="required" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit="" onclick="btnadd()">立即提交</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div style="height:900px;" >
+        <table id="productmain" lay-filter="test"></table>
+    </div>
+    <script type="text/javascript">
+        layui.use('table', function () {
+            var table = layui.table;
+
+            InitBrandlist(table);
+          
+            function InitBrandlist(table) {
+
+                var parm = getparms("#searbrandinp");
+                var brandname = parm.brandname
+                //第一个实例
+                table.render({
+                    id: "brandtable"
+                    , elem: '#productmain'
+                    , where: { brandname: brandname }
+                    , height: 750
+                    , url: '/Brand/GetBranList' //数据接口
+                    , page: true //开启分页
+                    , limit: 10
+                    , limits: [10, 20, 30, 40, 50]
+                    , cols: [[ //表头
+                        { field: 'id', type: 'checkbox', title: 'id', width: 200 },
+                        { field: 'Id', title: 'ID', width: 200 },
+                        { field: 'brandname', title: '品牌名称', width: 200 },
+                        { field: 'sort', title: '排序', width: 200, sort: true }
+
+                    ]]
+                });
+            }
+            $("#searbrand").on("click", function () {
+                InitBrandlist(table);
+            });
+
+            $("input").keyup(function () {
+                if (event.keyCode == 13) {
+                    InitBrandlist(table);
+                }
+            });
+            $("#btnedit").click(function () {
+                var datarows = getRows("brandtable", table);
+                if (datarows.length > 0 && datarows.length <= 1) {
+                    opendlg();
+                    var rows = datarows[0];
+                    $("input", $("#addbranddlg")).each(function () {
+                        var name = $(this).attr("name");
+                        if (name == "brandname") {
+                            $(this).val(rows["brandname"]);
+                        } else if (name == "sort") {
+                            $(this).val(rows["sort"]);
+                        } else if (name == "Id") {
+                            $(this).val(rows["Id"]);
+                        }
+
+                    });
+                } else if (datarows.length > 1) {
+                    layer.alert('只能选中一行要编辑的数据！', { icon: 6 });
+                    return false;
+                }
+
+            });
+
+            $("#btndelbrand").click(function () {
+                var datarows = getRows("brandtable", table);
+                var strid = "";
+                if (datarows.length > 0 && datarows.length <= 1) {
+                     strid = datarows[0].Id;
+                } else if (datarows.length > 1) {
+             
+                    for (var i = 0; i < datarows.length; i++) {
+                        if (strid == "") {
+                            strid = datarows[i];
+                        } else {
+                            strid = strid+","+ datarows[i];
+                        }
+                    }    
+                }
+                if (strid != "" && strid != null) {
+                    $.ajax({
+                        type: "post",
+                        url: "/Brand/deldBrad",
+                        data: { strid: strid },
+                        dataType: "json",
+                        success: function (data) {
+                            table.reload("brandtable")
+                        }
+                    });
+                } else {
+                    layer.alert('请选中一行要删除的数据！', { icon: 6 });
+                }
+              
+            });
+          
+
+        });
+        function addbrand() {
+            opendlg();
+
+        }
+        function opendlg() {
+            layer.open({
+                type: 1 //Page层类型
+                , area: ['1000px', '650px']
+                , title: '添加分类'
+                , shade: 0.6 //遮罩透明度
+                , maxmin: true //允许全屏最小化
+                , anim: 1 //0-6的动画形式，-1不开启
+                , content: $('#addbranddlg')
+            });
+
+        }
+
+        function btnadd() {
+            var proent = {};
+            $("input", $("#addbranddlg")).each(function () {
+                var name = $(this).attr("name");
+                proent[name] = $(this).val();
+
+            });
+            if (proent.brandname == "" || proent.brandname == null) {
+                return false;
+            }
+            //var ent = { sale: proent };
+            //var strent = JSON.stringify(proent);
+            $.ajax({
+                type: "get",
+                url: "/Brand/addBrad",
+                data: proent,
+                dataType: "json",
+                success: function (data) {
+
+                }
+            });
+        }
+
+   
+    </script>
+</body >
+</html >

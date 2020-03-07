@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MySaleOrderModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="SaleBrands">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="brandname" Type="nvarchar" MaxLength="50" />
+    <Property Name="status" Type="int" />
+    <Property Name="sort" Type="int" />
+  </EntityType>
+  <EntityType Name="SaleCatalog">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="paramentid" Type="int" />
+    <Property Name="cataname" Type="nvarchar" MaxLength="50" />
+    <Property Name="status" Type="int" />
+    <Property Name="sort" Type="int" />
+  </EntityType>
+  <EntityType Name="SaleCustom">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="128" />
+    <Property Name="sex" Type="nvarchar" MaxLength="50" />
+    <Property Name="adddate" Type="datetime" />
+    <Property Name="updatedate" Type="datetime" />
+    <Property Name="adduser" Type="int" />
+    <Property Name="saleuser" Type="int" />
+    <Property Name="phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" />
+    <Property Name="address" Type="nvarchar" MaxLength="50" />
+    <Property Name="status" Type="int" />
+    <Property Name="ico" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“MySaleOrder.dbo.SaleHelps”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="SaleHelps">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="adduser" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="adduser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="adddate" Type="datetime" />
+    <Property Name="updatetime" Type="datetime" />
+    <Property Name="modeltiel" Type="nvarchar" MaxLength="128" />
+    <Property Name="contens" Type="nvarchar(max)" />
+    <Property Name="status" Type="int" />
+  </EntityType>
+  <EntityType Name="SaleOrder">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="orderno" Type="nvarchar" MaxLength="50" />
+    <Property Name="orderdate" Type="datetime" />
+    <Property Name="adddate" Type="datetime" />
+    <Property Name="uptimedate" Type="datetime" />
+    <Property Name="customid" Type="int" />
+    <Property Name="executionstatus" Type="int" />
+    <Property Name="auditstatus" Type="int" />
+    <Property Name="adduser" Type="int" />
+    <Property Name="saleuser" Type="int" />
+    <Property Name="audituser" Type="int" />
+    <Property Name="auditdate" Type="datetime" />
+    <Property Name="amount" Type="float" />
+    <Property Name="evaluation" Type="nvarchar" MaxLength="4000" />
+    <Property Name="status" Type="int" />
+  </EntityType>
+  <EntityType Name="SaleOrderProlist">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="saleorderid" Type="int" />
+    <Property Name="productid" Type="int" />
+    <Property Name="price" Type="float" />
+    <Property Name="amount" Type="float" />
+    <Property Name="remark" Type="nvarchar" MaxLength="128" />
+    <Property Name="status" Type="int" />
+  </EntityType>
+  <EntityType Name="SaleOrderTracking">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="adduser" Type="int" />
+    <Property Name="adddate" Type="datetime" />
+    <Property Name="updatedate" Type="datetime" />
+    <Property Name="contents" Type="nvarchar(max)" />
+    <Property Name="remarks" Type="nvarchar(max)" />
+    <Property Name="status" Type="int" />
+  </EntityType>
+  <EntityType Name="SaleProduct">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="no" Type="nvarchar" MaxLength="50" />
+    <Property Name="cnname" Type="nvarchar" MaxLength="128" />
+    <Property Name="enname" Type="nvarchar" MaxLength="128" />
+    <Property Name="casno" Type="nvarchar" MaxLength="50" />
+    <Property Name="invotory" Type="float" />
+    <Property Name="price" Type="float" />
+    <Property Name="stand" Type="nvarchar" MaxLength="50" />
+    <Property Name="purity" Type="nvarchar" MaxLength="50" />
+    <Property Name="cataId" Type="int" />
+    <Property Name="breadid" Type="int" />
+    <Property Name="status" Type="int" />
+    <Property Name="adddate" Type="datetime" />
+    <Property Name="uptimedate" Type="datetime" />
+    <Property Name="adduserid" Type="int" />
+  </EntityType>
+  <EntityType Name="SaleWarning">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="adduser" Type="int" />
+    <Property Name="adddate" Type="datetime" />
+    <Property Name="updatetime" Type="datetime" />
+    <Property Name="lastdatetime" Type="datetime" />
+    <Property Name="type" Type="int" />
+    <Property Name="title" Type="nvarchar" MaxLength="2048" />
+    <Property Name="contens" Type="nvarchar(max)" />
+    <Property Name="status" Type="int" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="roleid" Type="int" />
+    <Property Name="account" Type="nvarchar" MaxLength="50" />
+    <Property Name="tel" Type="nvarchar" MaxLength="50" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" />
+    <Property Name="password" Type="nvarchar" MaxLength="128" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
+    <Property Name="portraitico" Type="nvarchar" MaxLength="50" />
+    <Property Name="sex" Type="nchar" MaxLength="10" />
+    <Property Name="age" Type="int" />
+    <Property Name="zhiwei" Type="nvarchar" MaxLength="50" />
+    <Property Name="address" Type="nvarchar" MaxLength="128" />
+    <Property Name="rolulevel" Type="int" />
+    <Property Name="adddate" Type="datetime" />
+    <Property Name="uptdate" Type="datetime" />
+    <Property Name="status" Type="int" />
+  </EntityType>
+  <EntityContainer Name="MySaleOrderModelStoreContainer">
+    <EntitySet Name="SaleBrands" EntityType="Self.SaleBrands" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SaleCatalog" EntityType="Self.SaleCatalog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SaleCustom" EntityType="Self.SaleCustom" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SaleOrder" EntityType="Self.SaleOrder" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SaleOrderProlist" EntityType="Self.SaleOrderProlist" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SaleOrderTracking" EntityType="Self.SaleOrderTracking" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SaleProduct" EntityType="Self.SaleProduct" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SaleWarning" EntityType="Self.SaleWarning" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SaleHelps" EntityType="Self.SaleHelps" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [SaleHelps].[Id] AS [Id], 
+    [SaleHelps].[adduser] AS [adduser], 
+    [SaleHelps].[adddate] AS [adddate], 
+    [SaleHelps].[updatetime] AS [updatetime], 
+    [SaleHelps].[modeltiel] AS [modeltiel], 
+    [SaleHelps].[contens] AS [contens], 
+    [SaleHelps].[status] AS [status]
+    FROM [dbo].[SaleHelps] AS [SaleHelps]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,9 @@
+C:\Users\admin\Desktop\rSaleorder版本\rSaleorder\Utils\bin\Release\Utils.dll
+C:\Users\admin\Desktop\rSaleorder版本\rSaleorder\Utils\bin\Release\Utils.pdb
+C:\Users\admin\Desktop\rSaleorder版本\rSaleorder\Utils\bin\Release\Newtonsoft.Json.dll
+C:\Users\admin\Desktop\rSaleorder版本\rSaleorder\Utils\bin\Release\Newtonsoft.Json.xml
+C:\Users\admin\Desktop\rSaleorder版本\rSaleorder\Utils\obj\Release\Utils.csprojAssemblyReference.cache
+C:\Users\admin\Desktop\rSaleorder版本\rSaleorder\Utils\obj\Release\Utils.csproj.CoreCompileInputs.cache
+C:\Users\admin\Desktop\rSaleorder版本\rSaleorder\Utils\obj\Release\Utils.csproj.CopyComplete
+C:\Users\admin\Desktop\rSaleorder版本\rSaleorder\Utils\obj\Release\Utils.dll
+C:\Users\admin\Desktop\rSaleorder版本\rSaleorder\Utils\obj\Release\Utils.pdb

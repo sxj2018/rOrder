@@ -1,0 +1,133 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/show/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/show/css/register.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+
+    <title>regView</title>
+
+
+    <script type="text/javascript">
+        $(function () {
+
+
+           
+        });
+        function saveuser() {
+
+
+            var unamenew = $("#username").val();
+            var tel = $("#tel").val();
+            var email = $("#email").val();
+            var zhiwei = $("#zhiwei").val();
+            var sex = $("input[type='radio']:checked").val();
+            var password = $("#password").val();
+            var passwordtwo = $("#passwordtwo").val();
+            if (unamenew == null || unamenew == "") {
+                alert("用户名不能为空！");
+                return false;
+            }
+            if (tel == null || tel == "") {
+                alert("电话不能空！");
+                return false;
+            }
+            if (password == null || password == "") {
+                alert("密码不能空！");
+                return false;
+            }
+            if (password != passwordtwo) {
+                alert("确认密码必须一致！");
+                return false;
+            }
+            var users = {
+                account: unamenew,
+                tel: tel,
+                email: email,
+                password: password,
+                sex: sex,
+                zhiwei: zhiwei
+
+            };
+            $.ajax({
+                type: "post",
+                url: "/Home/InserUser",
+                data: { users: users },
+                dataType: "json",
+                success: function (data) {
+                    if (data != null) {
+                        var jodata = JSON.parse(data);
+                        if (jodata["result"] == "1") {
+                            location.href = "/Home/Index";
+
+                        } else if (jodata["result"] == "-1") {
+                            alert(jodata["messge"]);
+                        } else {
+                            alert("注册失败！请联系管理员");
+                        }
+                    } else {
+                        alert("注册失败！请联系管理员");
+                    }
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class="login-header">
+        <div class="container"><p>R企业销售订单管理系统</p></div>
+    </div>
+    <div class="reg-banner">
+        <div class="container">
+            <div class="col-lg-6 col-md-6 col-sm-6 hidden-xs">
+                <img src="/show/images/1.png" class="img-responsive">
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="reg-form">
+                    <p class="p-icon"><span class="glyphicon glyphicon-user"></span></p>
+                    <div class="form-group form-group1">
+                        <label for="username">用&nbsp;&nbsp;户&nbsp;&nbsp;名</label>
+                        <input type="text" id="username">
+                    </div>
+                    <div class="form-group form-group1">
+                        <label for="tel">手&nbsp;&nbsp;机&nbsp;&nbsp;号</label>
+                        <input type="text" id="tel">
+                    </div>
+                    <div class="form-group form-group1">
+                        <label for="email">邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱</label>
+                        <input type="text" id="email">
+                    </div>
+                    <div class="form-group form-group1">
+                        <label for="zhiwei">职&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;位</label>
+                        <select id="zhiwei" style="width:100px" >
+                            <option value="销售">销售</option>
+                            <option value="财务">财务</option>
+                        </select>
+                    </div>
+                    <div class="form-group group-sex">
+                        <label for="sex">性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别</label>
+                        <input type="radio" name="sex" value="男" title="男" checked>男
+                        <input type="radio" name="sex" value="女" title="女">女
+                    </div>
+                    <div class="form-group form-group2">
+                        <label for="password">设置密码</label>
+                        <input type="password" id="password">
+                    </div>
+                    <div class="form-group form-group2">
+                        <label for="password">确认密码</label>
+                        <input type="password" id="passwordtwo">
+                    </div>
+                    <button type="submit" onclick="saveuser()" class="btn">注&nbsp;&nbsp;册</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

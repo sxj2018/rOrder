@@ -1,0 +1,530 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MySaleOrderModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="SaleBrands">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="brandname" Type="nvarchar" MaxLength="50" />
+          <Property Name="status" Type="int" />
+          <Property Name="sort" Type="int" />
+        </EntityType>
+        <EntityType Name="SaleCatalog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="paramentid" Type="int" />
+          <Property Name="cataname" Type="nvarchar" MaxLength="50" />
+          <Property Name="status" Type="int" />
+          <Property Name="sort" Type="int" />
+        </EntityType>
+        <EntityType Name="SaleCustom">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="128" />
+          <Property Name="sex" Type="nvarchar" MaxLength="50" />
+          <Property Name="adddate" Type="datetime" />
+          <Property Name="updatedate" Type="datetime" />
+          <Property Name="adduser" Type="int" />
+          <Property Name="saleuser" Type="int" />
+          <Property Name="phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+          <Property Name="address" Type="nvarchar" MaxLength="50" />
+          <Property Name="status" Type="int" />
+          <Property Name="ico" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“MySaleOrder.dbo.SaleHelps”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="SaleHelps">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="adduser" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="adduser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="adddate" Type="datetime" />
+          <Property Name="updatetime" Type="datetime" />
+          <Property Name="modeltiel" Type="nvarchar" MaxLength="128" />
+          <Property Name="contens" Type="nvarchar(max)" />
+          <Property Name="status" Type="int" />
+        </EntityType>
+        <EntityType Name="SaleOrder">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="orderno" Type="nvarchar" MaxLength="50" />
+          <Property Name="orderdate" Type="datetime" />
+          <Property Name="adddate" Type="datetime" />
+          <Property Name="uptimedate" Type="datetime" />
+          <Property Name="customid" Type="int" />
+          <Property Name="executionstatus" Type="int" />
+          <Property Name="auditstatus" Type="int" />
+          <Property Name="adduser" Type="int" />
+          <Property Name="saleuser" Type="int" />
+          <Property Name="audituser" Type="int" />
+          <Property Name="auditdate" Type="datetime" />
+          <Property Name="amount" Type="float" />
+          <Property Name="evaluation" Type="nvarchar" MaxLength="4000" />
+          <Property Name="status" Type="int" />
+        </EntityType>
+        <EntityType Name="SaleOrderProlist">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="saleorderid" Type="int" />
+          <Property Name="productid" Type="int" />
+          <Property Name="price" Type="float" />
+          <Property Name="amount" Type="float" />
+          <Property Name="remark" Type="nvarchar" MaxLength="128" />
+          <Property Name="status" Type="int" />
+        </EntityType>
+        <EntityType Name="SaleOrderTracking">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="adduser" Type="int" />
+          <Property Name="adddate" Type="datetime" />
+          <Property Name="updatedate" Type="datetime" />
+          <Property Name="contents" Type="nvarchar(max)" />
+          <Property Name="remarks" Type="nvarchar(max)" />
+          <Property Name="status" Type="int" />
+        </EntityType>
+        <EntityType Name="SaleProduct">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="no" Type="nvarchar" MaxLength="50" />
+          <Property Name="cnname" Type="nvarchar" MaxLength="128" />
+          <Property Name="enname" Type="nvarchar" MaxLength="128" />
+          <Property Name="casno" Type="nvarchar" MaxLength="50" />
+          <Property Name="invotory" Type="float" />
+          <Property Name="price" Type="float" />
+          <Property Name="stand" Type="nvarchar" MaxLength="50" />
+          <Property Name="purity" Type="nvarchar" MaxLength="50" />
+          <Property Name="cataId" Type="int" />
+          <Property Name="breadid" Type="int" />
+          <Property Name="status" Type="int" />
+          <Property Name="adddate" Type="datetime" />
+          <Property Name="uptimedate" Type="datetime" />
+          <Property Name="adduserid" Type="int" />
+        </EntityType>
+        <EntityType Name="SaleWarning">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="adduser" Type="int" />
+          <Property Name="adddate" Type="datetime" />
+          <Property Name="updatetime" Type="datetime" />
+          <Property Name="lastdatetime" Type="datetime" />
+          <Property Name="type" Type="int" />
+          <Property Name="title" Type="nvarchar" MaxLength="2048" />
+          <Property Name="contens" Type="nvarchar(max)" />
+          <Property Name="status" Type="int" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="roleid" Type="int" />
+          <Property Name="account" Type="nvarchar" MaxLength="50" />
+          <Property Name="tel" Type="nvarchar" MaxLength="50" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+          <Property Name="password" Type="nvarchar" MaxLength="128" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="portraitico" Type="nvarchar" MaxLength="50" />
+          <Property Name="sex" Type="nchar" MaxLength="10" />
+          <Property Name="age" Type="int" />
+          <Property Name="zhiwei" Type="nvarchar" MaxLength="50" />
+          <Property Name="address" Type="nvarchar" MaxLength="128" />
+          <Property Name="rolulevel" Type="int" />
+          <Property Name="adddate" Type="datetime" />
+          <Property Name="uptdate" Type="datetime" />
+          <Property Name="status" Type="int" />
+        </EntityType>
+        <EntityContainer Name="MySaleOrderModelStoreContainer">
+          <EntitySet Name="SaleBrands" EntityType="Self.SaleBrands" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SaleCatalog" EntityType="Self.SaleCatalog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SaleCustom" EntityType="Self.SaleCustom" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SaleOrder" EntityType="Self.SaleOrder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SaleOrderProlist" EntityType="Self.SaleOrderProlist" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SaleOrderTracking" EntityType="Self.SaleOrderTracking" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SaleProduct" EntityType="Self.SaleProduct" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SaleWarning" EntityType="Self.SaleWarning" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SaleHelps" EntityType="Self.SaleHelps" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [SaleHelps].[Id] AS [Id], 
+    [SaleHelps].[adduser] AS [adduser], 
+    [SaleHelps].[adddate] AS [adddate], 
+    [SaleHelps].[updatetime] AS [updatetime], 
+    [SaleHelps].[modeltiel] AS [modeltiel], 
+    [SaleHelps].[contens] AS [contens], 
+    [SaleHelps].[status] AS [status]
+    FROM [dbo].[SaleHelps] AS [SaleHelps]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MySaleOrderModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="account" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="tel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="portraitico" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sex" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="age" Type="Int32" />
+          <Property Name="zhiwei" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="address" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="rolulevel" Type="Int32" />
+          <Property Name="roleid" Type="Int32" />
+          <Property Name="adddate" Type="DateTime" Precision="3" />
+          <Property Name="uptdate" Type="DateTime" Precision="3" />
+          <Property Name="status" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="MySaleOrderEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <EntitySet Name="SaleBrands" EntityType="MySaleOrderModel.SaleBrands" />
+          <EntitySet Name="SaleCatalog" EntityType="MySaleOrderModel.SaleCatalog" />
+          <EntitySet Name="SaleOrder" EntityType="MySaleOrderModel.SaleOrder" />
+          <EntitySet Name="SaleOrderProlist" EntityType="MySaleOrderModel.SaleOrderProlist" />
+          <EntitySet Name="SaleCustom" EntityType="MySaleOrderModel.SaleCustom" />
+          <EntitySet Name="SaleProduct" EntityType="MySaleOrderModel.SaleProduct" />
+          <EntitySet Name="SaleOrderTracking" EntityType="MySaleOrderModel.SaleOrderTracking" />
+          <EntitySet Name="SaleWarning" EntityType="MySaleOrderModel.SaleWarning" />
+          <EntitySet Name="SaleHelps" EntityType="MySaleOrderModel.SaleHelps" />
+        </EntityContainer>
+        <EntityType Name="SaleBrands">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="brandname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="sort" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SaleCatalog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="paramentid" Type="Int32" />
+          <Property Name="cataname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="sort" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SaleOrder">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="orderno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="orderdate" Type="DateTime" Precision="3" />
+          <Property Name="adddate" Type="DateTime" Precision="3" />
+          <Property Name="uptimedate" Type="DateTime" Precision="3" />
+          <Property Name="customid" Type="Int32" />
+          <Property Name="executionstatus" Type="Int32" />
+          <Property Name="auditstatus" Type="Int32" />
+          <Property Name="adduser" Type="Int32" />
+          <Property Name="saleuser" Type="Int32" />
+          <Property Name="audituser" Type="Int32" />
+          <Property Name="auditdate" Type="DateTime" Precision="3" />
+          <Property Name="amount" Type="Double" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="evaluation" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SaleOrderProlist">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="saleorderid" Type="Int32" />
+          <Property Name="productid" Type="Int32" />
+          <Property Name="price" Type="Double" />
+          <Property Name="amount" Type="Double" />
+          <Property Name="remark" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SaleCustom">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="sex" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="adddate" Type="DateTime" Precision="3" />
+          <Property Name="updatedate" Type="DateTime" Precision="3" />
+          <Property Name="adduser" Type="Int32" />
+          <Property Name="saleuser" Type="Int32" />
+          <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="ico" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SaleProduct">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cnname" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="enname" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="casno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="invotory" Type="Double" />
+          <Property Name="price" Type="Double" />
+          <Property Name="stand" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="purity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cataId" Type="Int32" />
+          <Property Name="breadid" Type="Int32" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="adddate" Type="DateTime" Precision="3" />
+          <Property Name="uptimedate" Type="DateTime" Precision="3" />
+          <Property Name="adduserid" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SaleOrderTracking">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="adduser" Type="Int32" />
+          <Property Name="adddate" Type="DateTime" Precision="3" />
+          <Property Name="updatedate" Type="DateTime" Precision="3" />
+          <Property Name="contents" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SaleWarning">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="adduser" Type="Int32" />
+          <Property Name="adddate" Type="DateTime" Precision="3" />
+          <Property Name="updatetime" Type="DateTime" Precision="3" />
+          <Property Name="lastdatetime" Type="DateTime" Precision="3" />
+          <Property Name="type" Type="Int32" />
+          <Property Name="title" Type="String" MaxLength="2048" FixedLength="false" Unicode="true" />
+          <Property Name="contens" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SaleHelps">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="adduser" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="adduser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="adddate" Type="DateTime" Precision="3" />
+          <Property Name="updatetime" Type="DateTime" Precision="3" />
+          <Property Name="modeltiel" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="contens" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="Int32" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MySaleOrderModelStoreContainer" CdmEntityContainer="MySaleOrderEntities">
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="MySaleOrderModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="uptdate" ColumnName="uptdate" />
+                <ScalarProperty Name="adddate" ColumnName="adddate" />
+                <ScalarProperty Name="roleid" ColumnName="roleid" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="account" ColumnName="account" />
+                <ScalarProperty Name="tel" ColumnName="tel" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="portraitico" ColumnName="portraitico" />
+                <ScalarProperty Name="sex" ColumnName="sex" />
+                <ScalarProperty Name="age" ColumnName="age" />
+                <ScalarProperty Name="zhiwei" ColumnName="zhiwei" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="rolulevel" ColumnName="rolulevel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SaleBrands">
+            <EntityTypeMapping TypeName="MySaleOrderModel.SaleBrands">
+              <MappingFragment StoreEntitySet="SaleBrands">
+                <ScalarProperty Name="sort" ColumnName="sort" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="brandname" ColumnName="brandname" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SaleCatalog">
+            <EntityTypeMapping TypeName="MySaleOrderModel.SaleCatalog">
+              <MappingFragment StoreEntitySet="SaleCatalog">
+                <ScalarProperty Name="sort" ColumnName="sort" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="cataname" ColumnName="cataname" />
+                <ScalarProperty Name="paramentid" ColumnName="paramentid" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SaleOrder">
+            <EntityTypeMapping TypeName="MySaleOrderModel.SaleOrder">
+              <MappingFragment StoreEntitySet="SaleOrder">
+                <ScalarProperty Name="evaluation" ColumnName="evaluation" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="auditdate" ColumnName="auditdate" />
+                <ScalarProperty Name="audituser" ColumnName="audituser" />
+                <ScalarProperty Name="saleuser" ColumnName="saleuser" />
+                <ScalarProperty Name="adduser" ColumnName="adduser" />
+                <ScalarProperty Name="auditstatus" ColumnName="auditstatus" />
+                <ScalarProperty Name="executionstatus" ColumnName="executionstatus" />
+                <ScalarProperty Name="customid" ColumnName="customid" />
+                <ScalarProperty Name="uptimedate" ColumnName="uptimedate" />
+                <ScalarProperty Name="adddate" ColumnName="adddate" />
+                <ScalarProperty Name="orderdate" ColumnName="orderdate" />
+                <ScalarProperty Name="orderno" ColumnName="orderno" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SaleOrderProlist">
+            <EntityTypeMapping TypeName="MySaleOrderModel.SaleOrderProlist">
+              <MappingFragment StoreEntitySet="SaleOrderProlist">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="productid" ColumnName="productid" />
+                <ScalarProperty Name="saleorderid" ColumnName="saleorderid" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SaleCustom">
+            <EntityTypeMapping TypeName="MySaleOrderModel.SaleCustom">
+              <MappingFragment StoreEntitySet="SaleCustom">
+                <ScalarProperty Name="ico" ColumnName="ico" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="saleuser" ColumnName="saleuser" />
+                <ScalarProperty Name="adduser" ColumnName="adduser" />
+                <ScalarProperty Name="updatedate" ColumnName="updatedate" />
+                <ScalarProperty Name="adddate" ColumnName="adddate" />
+                <ScalarProperty Name="sex" ColumnName="sex" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SaleProduct">
+            <EntityTypeMapping TypeName="MySaleOrderModel.SaleProduct">
+              <MappingFragment StoreEntitySet="SaleProduct">
+                <ScalarProperty Name="adduserid" ColumnName="adduserid" />
+                <ScalarProperty Name="uptimedate" ColumnName="uptimedate" />
+                <ScalarProperty Name="adddate" ColumnName="adddate" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="breadid" ColumnName="breadid" />
+                <ScalarProperty Name="cataId" ColumnName="cataId" />
+                <ScalarProperty Name="purity" ColumnName="purity" />
+                <ScalarProperty Name="stand" ColumnName="stand" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="invotory" ColumnName="invotory" />
+                <ScalarProperty Name="casno" ColumnName="casno" />
+                <ScalarProperty Name="enname" ColumnName="enname" />
+                <ScalarProperty Name="cnname" ColumnName="cnname" />
+                <ScalarProperty Name="no" ColumnName="no" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SaleOrderTracking">
+            <EntityTypeMapping TypeName="MySaleOrderModel.SaleOrderTracking">
+              <MappingFragment StoreEntitySet="SaleOrderTracking">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="remarks" ColumnName="remarks" />
+                <ScalarProperty Name="contents" ColumnName="contents" />
+                <ScalarProperty Name="updatedate" ColumnName="updatedate" />
+                <ScalarProperty Name="adddate" ColumnName="adddate" />
+                <ScalarProperty Name="adduser" ColumnName="adduser" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SaleWarning">
+            <EntityTypeMapping TypeName="MySaleOrderModel.SaleWarning">
+              <MappingFragment StoreEntitySet="SaleWarning">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="contens" ColumnName="contens" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="lastdatetime" ColumnName="lastdatetime" />
+                <ScalarProperty Name="updatetime" ColumnName="updatetime" />
+                <ScalarProperty Name="adddate" ColumnName="adddate" />
+                <ScalarProperty Name="adduser" ColumnName="adduser" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SaleHelps">
+            <EntityTypeMapping TypeName="MySaleOrderModel.SaleHelps">
+              <MappingFragment StoreEntitySet="SaleHelps">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="contens" ColumnName="contens" />
+                <ScalarProperty Name="modeltiel" ColumnName="modeltiel" />
+                <ScalarProperty Name="updatetime" ColumnName="updatetime" />
+                <ScalarProperty Name="adddate" ColumnName="adddate" />
+                <ScalarProperty Name="adduser" ColumnName="adduser" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

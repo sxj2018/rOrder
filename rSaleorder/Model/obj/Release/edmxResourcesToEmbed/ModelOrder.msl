@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MySaleOrderModelStoreContainer" CdmEntityContainer="MySaleOrderEntities">
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="MySaleOrderModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="uptdate" ColumnName="uptdate" />
+          <ScalarProperty Name="adddate" ColumnName="adddate" />
+          <ScalarProperty Name="roleid" ColumnName="roleid" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="account" ColumnName="account" />
+          <ScalarProperty Name="tel" ColumnName="tel" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="portraitico" ColumnName="portraitico" />
+          <ScalarProperty Name="sex" ColumnName="sex" />
+          <ScalarProperty Name="age" ColumnName="age" />
+          <ScalarProperty Name="zhiwei" ColumnName="zhiwei" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="rolulevel" ColumnName="rolulevel" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SaleBrands">
+      <EntityTypeMapping TypeName="MySaleOrderModel.SaleBrands">
+        <MappingFragment StoreEntitySet="SaleBrands">
+          <ScalarProperty Name="sort" ColumnName="sort" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="brandname" ColumnName="brandname" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SaleCatalog">
+      <EntityTypeMapping TypeName="MySaleOrderModel.SaleCatalog">
+        <MappingFragment StoreEntitySet="SaleCatalog">
+          <ScalarProperty Name="sort" ColumnName="sort" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="cataname" ColumnName="cataname" />
+          <ScalarProperty Name="paramentid" ColumnName="paramentid" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SaleOrder">
+      <EntityTypeMapping TypeName="MySaleOrderModel.SaleOrder">
+        <MappingFragment StoreEntitySet="SaleOrder">
+          <ScalarProperty Name="evaluation" ColumnName="evaluation" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="auditdate" ColumnName="auditdate" />
+          <ScalarProperty Name="audituser" ColumnName="audituser" />
+          <ScalarProperty Name="saleuser" ColumnName="saleuser" />
+          <ScalarProperty Name="adduser" ColumnName="adduser" />
+          <ScalarProperty Name="auditstatus" ColumnName="auditstatus" />
+          <ScalarProperty Name="executionstatus" ColumnName="executionstatus" />
+          <ScalarProperty Name="customid" ColumnName="customid" />
+          <ScalarProperty Name="uptimedate" ColumnName="uptimedate" />
+          <ScalarProperty Name="adddate" ColumnName="adddate" />
+          <ScalarProperty Name="orderdate" ColumnName="orderdate" />
+          <ScalarProperty Name="orderno" ColumnName="orderno" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SaleOrderProlist">
+      <EntityTypeMapping TypeName="MySaleOrderModel.SaleOrderProlist">
+        <MappingFragment StoreEntitySet="SaleOrderProlist">
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="productid" ColumnName="productid" />
+          <ScalarProperty Name="saleorderid" ColumnName="saleorderid" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SaleCustom">
+      <EntityTypeMapping TypeName="MySaleOrderModel.SaleCustom">
+        <MappingFragment StoreEntitySet="SaleCustom">
+          <ScalarProperty Name="ico" ColumnName="ico" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="saleuser" ColumnName="saleuser" />
+          <ScalarProperty Name="adduser" ColumnName="adduser" />
+          <ScalarProperty Name="updatedate" ColumnName="updatedate" />
+          <ScalarProperty Name="adddate" ColumnName="adddate" />
+          <ScalarProperty Name="sex" ColumnName="sex" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SaleProduct">
+      <EntityTypeMapping TypeName="MySaleOrderModel.SaleProduct">
+        <MappingFragment StoreEntitySet="SaleProduct">
+          <ScalarProperty Name="adduserid" ColumnName="adduserid" />
+          <ScalarProperty Name="uptimedate" ColumnName="uptimedate" />
+          <ScalarProperty Name="adddate" ColumnName="adddate" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="breadid" ColumnName="breadid" />
+          <ScalarProperty Name="cataId" ColumnName="cataId" />
+          <ScalarProperty Name="purity" ColumnName="purity" />
+          <ScalarProperty Name="stand" ColumnName="stand" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="invotory" ColumnName="invotory" />
+          <ScalarProperty Name="casno" ColumnName="casno" />
+          <ScalarProperty Name="enname" ColumnName="enname" />
+          <ScalarProperty Name="cnname" ColumnName="cnname" />
+          <ScalarProperty Name="no" ColumnName="no" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SaleOrderTracking">
+      <EntityTypeMapping TypeName="MySaleOrderModel.SaleOrderTracking">
+        <MappingFragment StoreEntitySet="SaleOrderTracking">
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="contents" ColumnName="contents" />
+          <ScalarProperty Name="updatedate" ColumnName="updatedate" />
+          <ScalarProperty Name="adddate" ColumnName="adddate" />
+          <ScalarProperty Name="adduser" ColumnName="adduser" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SaleWarning">
+      <EntityTypeMapping TypeName="MySaleOrderModel.SaleWarning">
+        <MappingFragment StoreEntitySet="SaleWarning">
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="contens" ColumnName="contens" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="lastdatetime" ColumnName="lastdatetime" />
+          <ScalarProperty Name="updatetime" ColumnName="updatetime" />
+          <ScalarProperty Name="adddate" ColumnName="adddate" />
+          <ScalarProperty Name="adduser" ColumnName="adduser" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SaleHelps">
+      <EntityTypeMapping TypeName="MySaleOrderModel.SaleHelps">
+        <MappingFragment StoreEntitySet="SaleHelps">
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="contens" ColumnName="contens" />
+          <ScalarProperty Name="modeltiel" ColumnName="modeltiel" />
+          <ScalarProperty Name="updatetime" ColumnName="updatetime" />
+          <ScalarProperty Name="adddate" ColumnName="adddate" />
+          <ScalarProperty Name="adduser" ColumnName="adduser" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

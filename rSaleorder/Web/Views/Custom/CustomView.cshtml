@@ -1,0 +1,276 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>BrandView</title>
+    <link href="~/Layui/css/layui.css" rel="stylesheet" />
+    <script src="~/Layui/layui.js"></script>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/show/js/crmbase.js"></script>
+</head>
+<body>
+    <div id="searcustomer">
+        搜索ID：
+        <div class="layui-inline">
+            <input class="layui-input" searfield="true" name="customerno" autocomplete="off">
+        </div>
+        <button class="layui-btn" data-type="reload" id="searcustom">搜索</button>
+        <button class="layui-btn" id="addcutom">增加</button>
+        <button class="layui-btn " id="btnedit">编辑</button>
+        <button class="layui-btn" id="btndelbrand">删除</button>
+    </div>
+    <div id="addcustomdlg" style="display:none;">
+        <form class="layui-form" action="" lay-filter="example">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">客户名称</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="Id" class="layui-hide">
+                        <input type="text" name="name" lay-verify="required" class="layui-input">
+                    </div>
+                </div>                                
+                <div class="layui-inline">
+                    <label class="layui-form-label">客户所属销售</label>
+                    <div class="layui-input-block">
+                        <select id="selsaleuser" name="saleuser" lay-verify="required">
+                            <option value="">请选择</option>
+
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">客户电话</label>
+                    <div class="layui-input-inline">
+                        <input type="text" value="" name="phone" lay-verify="phone" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">客户邮箱</label>
+                    <div class="layui-input-inline">
+                        <input type="text" value="" name="email" lay-verify="email" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">客户地址</label>
+                    <div class="layui-input-inline">
+                        <input type="text" value="" name="address" lay-verify="required" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                @*<div class="layui-inline">
+                    <label class="layui-form-label">客户头像</label>
+                    <div class="layui-input-inline">
+                        <input type="text" value="0" name="ico" lay-verify="required" autocomplete="off" class="layui-input">
+                    </div>
+                </div>*@
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit="" onclick="btnadd()">立即提交</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div style="height:900px">
+        <table id="custommain" lay-filter="test"></table>
+    </div>
+    <script type="text/javascript">
+        layui.use('table', function () {
+            var table = layui.table;
+            var form = layui.form;
+            var arrusers = [];
+
+            function Searcustom(table) {
+                var parm = getparms("#searcustomer");
+                //cnname = parm.namereload;
+                parm = JSON.stringify(parm);
+                //var cnname = $("#nameReload").val();
+                if (parm == null && parm == "") {
+                    return false;
+                }
+                //第一个实例
+                table.render({
+                    id: "customtable"
+                    , elem: '#custommain'
+                    , height: 750
+                    , where: { paramList: parm }
+                    , url: '/Custom/GetCustomList' //数据接口
+                    , page: true //开启分页
+                    , limit: 10
+                    , limits: [10, 20, 30, 40, 50]
+                    , cols: [[ //表头
+                        { field: 'id', type: 'checkbox', title: 'id', width: 80 },
+                        { field: 'Id', title: 'ID', width: 80 },
+                        { field: 'name', title: '客户姓名', width: 150 },
+                        { field: 'ico', title: '客户头像', width: 150, hide: true },
+                        { field: 'sex', title: '客户性别', width: 100 },
+                        { field: 'addusername', title: '添加人', width: 150 },
+                        { field: 'saleusername', title: '所属销售', width: 150 },
+                        { field: 'adduser', title: '添加人id', width: 150 ,hide:true},
+                        { field: 'saleuser', title: '客户所属销售id', width: 150, hide: true },
+                        { field: 'phone', title: '客户电话', width: 100 },
+                        { field: 'email', title: '客户邮箱', width: 200 },
+                        {
+                            field: 'adddate', title: '添加日期', width: 150, templet: function (row) {
+                                return FormatStringDate(row.adddate);
+                            }
+                        },
+                        {
+                            field: 'updatedate', title: '更新时间', width: 150, templet: function (row) {
+                                return FormatStringDate(row.updatedate);
+                            }
+                        },
+                        { field: 'address', title: '客户地址', width: 300 },
+
+                    ]]
+                });
+            }
+            Searcustom(table);
+            $("#searcustom").on("click", function () {
+                Searcustom(table);
+            });
+
+            $("input").keyup(function () {
+                if (event.keyCode == 13) {
+                    Searcustom(table);
+                }
+            });
+
+
+            $("#btnedit").click(function () {
+                var datarows = getRows("brandtable", table);
+                if (datarows.length > 0 && datarows.length <= 1) {
+                    opendlg();
+                    var rows = datarows[0];
+                    $("input", $("#addcustomdlg")).each(function () {
+                        var name = $(this).attr("name");
+                        if (name == "brandname") {
+                            $(this).val(rows["brandname"]);
+                        } else if (name == "sort") {
+                            $(this).val(rows["sort"]);
+                        } else if (name == "Id") {
+                            $(this).val(rows["Id"]);
+                        }
+
+                    });
+                } else if (datarows.length > 1) {
+                    layer.alert('只能选中一行要编辑的数据！', { icon: 6 });
+                    return false;
+                }
+                InitUserlist(form);
+
+            });
+            $("#addcutom").on("click", function () {
+                addcutom(form);
+            });
+
+           
+            $("#btndelbrand").click(function () {
+                var datarows = getRows("brandtable", table);
+                var strid = "";
+                if (datarows.length > 0 && datarows.length <= 1) {
+                     strid = datarows[0].Id;
+                } else if (datarows.length > 1) {
+
+                    for (var i = 0; i < datarows.length; i++) {
+                        if (strid == "") {
+                            strid = datarows[i];
+                        } else {
+                            strid = strid+","+ datarows[i];
+                        }
+                    }
+                }
+                if (strid != "" && strid != null) {
+                    $.ajax({
+                        type: "post",
+                        url: "/Custom/delCustom",
+                        data: { strid: strid },
+                        dataType: "json",
+                        success: function (data) {
+                            table.reload("brandtable")
+                        }
+                    });
+                } else {
+                    layer.alert('请选中一行要删除的数据！', { icon: 6 });
+                }
+            });
+
+
+        });
+        function addcutom(form) {
+            opendlg(form);
+
+        }
+        function opendlg(form) {
+            layer.open({
+                type: 1 //Page层类型
+                , area: ['1000px', '650px']
+                , title: '添加分类'
+                , shade: 0.6 //遮罩透明度
+                , maxmin: true //允许全屏最小化
+                , anim: 1 //0-6的动画形式，-1不开启
+                , content: $('#addcustomdlg')
+            });
+            InitUserlist(form);
+
+        }
+
+        function btnadd() {
+            var ent = {};
+            $("input", $("#addcustomdlg")).each(function () {
+                var name = $(this).attr("name");
+                if (name != null && name!="") {
+                    ent[name] = $(this).val();
+                }
+            });
+            ent["saleuser"] = $("#selsaleuser").val(); 
+            //if (proent.brandname == "" || proent.brandname == null) {
+            //    return false;
+            //}
+            //var ent = { sale: proent };
+            //var strent = JSON.stringify(proent);
+            var strent = JSON.stringify(ent);
+            $.ajax({
+                type: "post",
+                url: "/Custom/addCustom",
+                data: { paramList: strent},
+                dataType: "json",
+                success: function (data) {
+
+                }
+            });
+        }
+        function InitUserlist(form) {
+
+            //加载用户下拉列表
+            $.ajax({
+                url: '/Users/GetUsersList',
+                dataType: 'json',
+                type: 'post',
+                success: function (data) {
+                    var branddata = data.data;
+                    if (branddata != null && branddata != "") {
+                        $('#selsaleuser').empty();
+                        form.render();
+                        //arrusers = [];
+                        $('#selsaleuser').append('<option value="">请选择</option>');
+                        $.each(branddata, function () {
+                            var user = this;
+                            //arrusers.push(user);
+                            //$('#slecata').append(new Option(brand.cataname, brand.Id));//往下拉菜单里添加元素
+                            $('#selsaleuser').append('<option value="' + user.Id + '">' + user.name + '</option>');//往下拉菜单里添加元素
+                        });
+                    }
+                    form.render();
+                }
+            });
+        }
+
+    </script>
+</body>
+</html>

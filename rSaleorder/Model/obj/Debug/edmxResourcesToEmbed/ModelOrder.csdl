@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MySaleOrderModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="account" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="tel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="portraitico" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="sex" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="age" Type="Int32" />
+    <Property Name="zhiwei" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="address" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="rolulevel" Type="Int32" />
+    <Property Name="roleid" Type="Int32" />
+    <Property Name="adddate" Type="DateTime" Precision="3" />
+    <Property Name="uptdate" Type="DateTime" Precision="3" />
+    <Property Name="status" Type="Int32" />
+  </EntityType>
+  <EntityContainer Name="MySaleOrderEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Users" EntityType="Self.Users" />
+    <EntitySet Name="SaleBrands" EntityType="MySaleOrderModel.SaleBrands" />
+    <EntitySet Name="SaleCatalog" EntityType="MySaleOrderModel.SaleCatalog" />
+    <EntitySet Name="SaleOrder" EntityType="MySaleOrderModel.SaleOrder" />
+    <EntitySet Name="SaleOrderProlist" EntityType="MySaleOrderModel.SaleOrderProlist" />
+    <EntitySet Name="SaleCustom" EntityType="MySaleOrderModel.SaleCustom" />
+    <EntitySet Name="SaleProduct" EntityType="MySaleOrderModel.SaleProduct" />
+    <EntitySet Name="SaleOrderTracking" EntityType="MySaleOrderModel.SaleOrderTracking" />
+    <EntitySet Name="SaleWarning" EntityType="MySaleOrderModel.SaleWarning" />
+    <EntitySet Name="SaleHelps" EntityType="MySaleOrderModel.SaleHelps" />
+  </EntityContainer>
+  <EntityType Name="SaleBrands">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="brandname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="Int32" />
+    <Property Name="sort" Type="Int32" />
+  </EntityType>
+  <EntityType Name="SaleCatalog">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="paramentid" Type="Int32" />
+    <Property Name="cataname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="Int32" />
+    <Property Name="sort" Type="Int32" />
+  </EntityType>
+  <EntityType Name="SaleOrder">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="orderno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="orderdate" Type="DateTime" Precision="3" />
+    <Property Name="adddate" Type="DateTime" Precision="3" />
+    <Property Name="uptimedate" Type="DateTime" Precision="3" />
+    <Property Name="customid" Type="Int32" />
+    <Property Name="executionstatus" Type="Int32" />
+    <Property Name="auditstatus" Type="Int32" />
+    <Property Name="adduser" Type="Int32" />
+    <Property Name="saleuser" Type="Int32" />
+    <Property Name="audituser" Type="Int32" />
+    <Property Name="auditdate" Type="DateTime" Precision="3" />
+    <Property Name="amount" Type="Double" />
+    <Property Name="status" Type="Int32" />
+    <Property Name="evaluation" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SaleOrderProlist">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="saleorderid" Type="Int32" />
+    <Property Name="productid" Type="Int32" />
+    <Property Name="price" Type="Double" />
+    <Property Name="amount" Type="Double" />
+    <Property Name="remark" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="Int32" />
+  </EntityType>
+  <EntityType Name="SaleCustom">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="sex" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="adddate" Type="DateTime" Precision="3" />
+    <Property Name="updatedate" Type="DateTime" Precision="3" />
+    <Property Name="adduser" Type="Int32" />
+    <Property Name="saleuser" Type="Int32" />
+    <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="Int32" />
+    <Property Name="ico" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SaleProduct">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="cnname" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="enname" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="casno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="invotory" Type="Double" />
+    <Property Name="price" Type="Double" />
+    <Property Name="stand" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="purity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="cataId" Type="Int32" />
+    <Property Name="breadid" Type="Int32" />
+    <Property Name="status" Type="Int32" />
+    <Property Name="adddate" Type="DateTime" Precision="3" />
+    <Property Name="uptimedate" Type="DateTime" Precision="3" />
+    <Property Name="adduserid" Type="Int32" />
+  </EntityType>
+  <EntityType Name="SaleOrderTracking">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="adduser" Type="Int32" />
+    <Property Name="adddate" Type="DateTime" Precision="3" />
+    <Property Name="updatedate" Type="DateTime" Precision="3" />
+    <Property Name="contents" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="Int32" />
+  </EntityType>
+  <EntityType Name="SaleWarning">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="adduser" Type="Int32" />
+    <Property Name="adddate" Type="DateTime" Precision="3" />
+    <Property Name="updatetime" Type="DateTime" Precision="3" />
+    <Property Name="lastdatetime" Type="DateTime" Precision="3" />
+    <Property Name="type" Type="Int32" />
+    <Property Name="title" Type="String" MaxLength="2048" FixedLength="false" Unicode="true" />
+    <Property Name="contens" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="Int32" />
+  </EntityType>
+  <EntityType Name="SaleHelps">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="adduser" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="adduser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="adddate" Type="DateTime" Precision="3" />
+    <Property Name="updatetime" Type="DateTime" Precision="3" />
+    <Property Name="modeltiel" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="contens" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="Int32" />
+  </EntityType>
+</Schema>

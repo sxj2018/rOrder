@@ -1,0 +1,53 @@
+C:\Users\admin\Desktop\rSaleorder\BLL\bin\Debug\BLL.dll
+C:\Users\admin\Desktop\rSaleorder\BLL\bin\Debug\BLL.pdb
+C:\Users\admin\Desktop\rSaleorder\BLL\bin\Debug\DAL.dll
+C:\Users\admin\Desktop\rSaleorder\BLL\bin\Debug\Model.dll
+C:\Users\admin\Desktop\rSaleorder\BLL\bin\Debug\EntityFramework.dll
+C:\Users\admin\Desktop\rSaleorder\BLL\bin\Debug\DAL.pdb
+C:\Users\admin\Desktop\rSaleorder\BLL\bin\Debug\Model.pdb
+C:\Users\admin\Desktop\rSaleorder\BLL\bin\Debug\Model.dll.config
+C:\Users\admin\Desktop\rSaleorder\BLL\bin\Debug\EntityFramework.xml
+C:\Users\admin\Desktop\rSaleorder\BLL\bin\Debug\zh-Hans\EntityFramework.resources.dll
+C:\Users\admin\Desktop\rSaleorder\BLL\obj\Debug\BLL.csprojAssemblyReference.cache
+C:\Users\admin\Desktop\rSaleorder\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+C:\Users\admin\Desktop\rSaleorder\BLL\obj\Debug\BLL.csproj.CopyComplete
+C:\Users\admin\Desktop\rSaleorder\BLL\obj\Debug\BLL.dll
+C:\Users\admin\Desktop\rSaleorder\BLL\obj\Debug\BLL.pdb
+C:\Users\admin\Desktop\新建文件夹 (4)\rSaleorder\BLL\bin\Debug\BLL.dll
+C:\Users\admin\Desktop\新建文件夹 (4)\rSaleorder\BLL\bin\Debug\BLL.pdb
+C:\Users\admin\Desktop\新建文件夹 (4)\rSaleorder\BLL\bin\Debug\DAL.dll
+C:\Users\admin\Desktop\新建文件夹 (4)\rSaleorder\BLL\bin\Debug\Model.dll
+C:\Users\admin\Desktop\新建文件夹 (4)\rSaleorder\BLL\bin\Debug\EntityFramework.dll
+C:\Users\admin\Desktop\新建文件夹 (4)\rSaleorder\BLL\bin\Debug\DAL.pdb
+C:\Users\admin\Desktop\新建文件夹 (4)\rSaleorder\BLL\bin\Debug\Model.pdb
+C:\Users\admin\Desktop\新建文件夹 (4)\rSaleorder\BLL\bin\Debug\Model.dll.config
+C:\Users\admin\Desktop\新建文件夹 (4)\rSaleorder\BLL\bin\Debug\EntityFramework.xml
+C:\Users\admin\Desktop\新建文件夹 (4)\rSaleorder\BLL\bin\Debug\zh-Hans\EntityFramework.resources.dll
+C:\Users\admin\Desktop\新建文件夹 (4)\rSaleorder\BLL\obj\Debug\BLL.csprojAssemblyReference.cache
+C:\Users\admin\Desktop\新建文件夹 (4)\rSaleorder\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+C:\Users\admin\Desktop\新建文件夹 (4)\rSaleorder\BLL\obj\Debug\BLL.csproj.CopyComplete
+C:\Users\admin\Desktop\新建文件夹 (4)\rSaleorder\BLL\obj\Debug\BLL.dll
+C:\Users\admin\Desktop\新建文件夹 (4)\rSaleorder\BLL\obj\Debug\BLL.pdb
+C:\Users\admin\Desktop\新建文件夹 (4)\rSaleorder\BLL\bin\Debug\Utils.dll
+C:\Users\admin\Desktop\新建文件夹 (4)\rSaleorder\BLL\bin\Debug\Newtonsoft.Json.dll
+C:\Users\admin\Desktop\新建文件夹 (4)\rSaleorder\BLL\bin\Debug\Utils.pdb
+C:\Users\admin\Desktop\新建文件夹 (4)\rSaleorder\BLL\bin\Debug\Newtonsoft.Json.xml
+C:\Users\admin\Desktop\rSaleorder版本\rSaleorder\BLL\bin\Debug\BLL.dll
+C:\Users\admin\Desktop\rSaleorder版本\rSaleorder\BLL\bin\Debug\BLL.pdb
+C:\Users\admin\Desktop\rSaleorder版本\rSaleorder\BLL\bin\Debug\DAL.dll
+C:\Users\admin\Desktop\rSaleorder版本\rSaleorder\BLL\bin\Debug\Model.dll
+C:\Users\admin\Desktop\rSaleorder版本\rSaleorder\BLL\bin\Debug\EntityFramework.dll
+C:\Users\admin\Desktop\rSaleorder版本\rSaleorder\BLL\bin\Debug\Utils.dll
+C:\Users\admin\Desktop\rSaleorder版本\rSaleorder\BLL\bin\Debug\Newtonsoft.Json.dll
+C:\Users\admin\Desktop\rSaleorder版本\rSaleorder\BLL\bin\Debug\DAL.pdb
+C:\Users\admin\Desktop\rSaleorder版本\rSaleorder\BLL\bin\Debug\Model.pdb
+C:\Users\admin\Desktop\rSaleorder版本\rSaleorder\BLL\bin\Debug\Model.dll.config
+C:\Users\admin\Desktop\rSaleorder版本\rSaleorder\BLL\bin\Debug\EntityFramework.xml
+C:\Users\admin\Desktop\rSaleorder版本\rSaleorder\BLL\bin\Debug\Utils.pdb
+C:\Users\admin\Desktop\rSaleorder版本\rSaleorder\BLL\bin\Debug\Newtonsoft.Json.xml
+C:\Users\admin\Desktop\rSaleorder版本\rSaleorder\BLL\bin\Debug\zh-Hans\EntityFramework.resources.dll
+C:\Users\admin\Desktop\rSaleorder版本\rSaleorder\BLL\obj\Debug\BLL.csprojAssemblyReference.cache
+C:\Users\admin\Desktop\rSaleorder版本\rSaleorder\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+C:\Users\admin\Desktop\rSaleorder版本\rSaleorder\BLL\obj\Debug\BLL.csproj.CopyComplete
+C:\Users\admin\Desktop\rSaleorder版本\rSaleorder\BLL\obj\Debug\BLL.dll
+C:\Users\admin\Desktop\rSaleorder版本\rSaleorder\BLL\obj\Debug\BLL.pdb

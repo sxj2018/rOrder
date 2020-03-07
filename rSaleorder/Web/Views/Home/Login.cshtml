@@ -1,0 +1,89 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link href="~/show/css/login.css" rel="stylesheet" />
+    <link href="~/show/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script type="text/javascript" >
+        $(function () {
+            $("#btnlongin").click(function () {
+                getlong();
+            });
+
+            function getlong() {
+
+                var uname = $("#username").val();
+                var upwd = $("#password").val();
+                if (uname == null || uname == "" || upwd == null || upwd == "") {
+                    alert("用户名和密码不能为空！");
+                    return false;
+                }
+                $.ajax({
+                    type: "post",
+                    url: "/Home/GetLogin",
+                    data: { username: uname, pwd: upwd },
+                    dataType: "json",
+                    success: function (data) {
+                        if (data != null) {
+                            var jodata = JSON.parse(data);
+                            if (jodata["result"] == "1") {
+                                location.href = "/Home/Index";
+
+                            } else {
+                                alert("账号名或密码错误！登录失败！");
+                            }
+                        } else {
+                            alert("账号名或密码错误！登录失败！");
+                        }
+                    }
+                });
+            }
+            $('#password').bind('keypress', function (event) {
+
+                if (event.keyCode == "13") {
+                    getlong();
+                }
+
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="login-header">
+    <div class="container"><p>R企业销售订单管理系统</p></div>
+    </div>
+    <div class="login-banner">
+        <div class="container">
+            <div class="col-lg-6 col-md-6 col-sm-6 hidden-xs">
+                <img src="/show/images/1.png" class="img-responsive">
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="login-form">
+                    <p class="p-icon"><span class="glyphicon glyphicon-user"></span></p>
+                    <div class="form-group form-group1">
+                        <label for="username">用户名</label>
+                        <input type="text" id="username">
+                    </div>
+                    <div class="form-group form-group2">
+                        <label for="password">密&nbsp;&nbsp;&nbsp;码</label>
+                        <input type="password" id="password">
+                    </div>
+                    <div class="form-a">
+                        <a href="#" class="forget-password">忘记密码？</a>
+                        <a href="/Home/regView" class="reg">注册</a>
+                    </div>
+                    <button type="submit" id="btnlongin" class="btn">登&nbsp;&nbsp;录</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,514 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SaleOrderView</title>
+    <link href="~/Layui/css/layui.css" rel="stylesheet" />
+    <script src="~/Layui/layui.js"></script>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/show/js/crmbase.js"></script>
+   
+</head>
+<body>
+    <div class="demoTable" id="serchorder">
+        搜索ID：
+        <div class="layui-inline">
+            <input class="layui-input" searfield="true" name="orderno" autocomplete="off">
+        </div>
+        <button class="layui-btn" data-type="reload" id="searchorderss">搜索</button>
+        <button class="layui-btn" id="btnaddSaleorder">增加</button>
+        <button class="layui-btn " id="btnsaleorderedit">编辑</button>
+        <button class="layui-btn" id="btndelsaleorder">删除</button>
+        <button class="layui-btn" id="btnsaleaudit">审核</button>
+        <button class="layui-btn" id="btnsalecancelaudit">撤销审核</button>
+    </div>
+
+    <div  id="addsaleorderdlg" style="display:none;height:700px;">
+        <form class="layui-form" action="" lay-filter="example">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">订单编号</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="Id" value="0" class="layui-hide">
+                        <input type="text" id="orderorid" name="orderno" lay-verify="required" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">审核状态</label>
+                    <div class="layui-input-block">
+                        <select readonly="readonly" id="selexecutionstatus" name="executionstatus" lay-verify="required">
+                            <option value="0">未提交</option>
+                            <option value="1">待审核</option>
+                            <option value="1">审核通过</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">客户名称</label>
+                    <div class="layui-input-block">
+                        <select id="selcustom" name="customid" lay-verify="required">
+                            <option value="">请选择</option>
+
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">执行状态</label>
+                    <div class="layui-input-block">
+                        <select readonly="readonly" id="selexecutionstatus" name="executionstatus" lay-verify="required">
+                            <option value="0">未执行</option>
+                            <option value="1">执行中</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">所属销售</label>
+                    <div class="layui-input-block">
+                        <select id="selsaleuser" name="saleuser" lay-verify="required">
+                            <option value="">请选择</option>
+
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">搜索</label>
+                    <div class="layui-inline" id="searproductinp">
+                        <input class="layui-input" placeholder="产品名称" searfield="true" name="namereload" autocomplete="off">
+                    </div>
+                    <button class="layui-btn" data-type="reload" id="searpro" lay-event="reloadnew">搜索</button>
+                </div>
+                <div class="layui-inline">
+                    <button class="layui-btn" lay-submit="" onclick="btnadd()">立即提交</button>
+                </div>
+            </div>
+        </form>
+        <div>
+            <table id="tbsaleprodcuts" lay-filter="test"></table>
+        </div>
+    </div>
+    <div>
+        <div style="height:900px;">
+            <table id="saleordermain" lay-filter="test"></table>
+        </div>
+    </div>
+    <script type="text/javascript">
+               
+            InitProductlist();
+            function InitProductlist() {
+                var parm = getparms("#searproductinp");
+                //cnname = parm.namereload;
+                parm = JSON.stringify(parm);
+                $.ajax({
+                    type: "post",
+                    url: '/Product/GetProductList', //数据接口
+                    data: { paramList: parm,page:1,limit:20},
+                    dataType: "json",
+                    success: function (data) {
+                        var newdata = data.data;
+                        layui.data('cate', {
+                            key: 'data',
+                            value: newdata
+                        });
+
+
+
+                        layui.use('table', function () {
+                            var table = layui.table;
+
+                            var table = layui.table;
+
+                            //转换静态表格
+                            table.init('demo', {
+                                height: 315 //设置高度
+                                , limit: 10 //注意：请务必确保 limit 参数（默认：10）是与你服务端限定的数据条数一致
+                            });
+
+                            //table.render({
+                            //    id: "saleprodcuts"
+                            //    , elem: '#tbsaleprodcuts'
+                            //    , data: newdata
+                            //    , height: 450
+                            //    //, where: { paramList: parm }
+                            //    , page: true //开启分页
+                            //    , cols: [[ //表头
+                            //        { field: 'id', type: 'checkbox', title: 'id', width: 50 }
+                            //        , { field: 'Id', title: 'ID', sort: true, width: 80, hide: true }
+                            //        , { field: 'no', title: '产品编号', width: 90 }
+                            //        , { field: 'cnname', title: '产品名称', width: 150 }
+                            //        , { field: 'enname', title: '英文名称', width: 150 }
+                            //        , { field: 'casno', title: 'CAS号', width: 100 }
+                            //        , { field: 'invotory', title: '库存量', sort: true, width: 80 }
+                            //        , {
+                            //            field: 'uptimedate', title: '修改时间', sort: true, width: 150, templet: function (row) {
+                            //                return FormatStringDate(row.uptimedate);
+                            //            }
+                            //        }, { field: 'price', title: '价格', sort: true, width: 80, edit: 'text' },
+                            //        { field: 'prostandnum', title: '数量', sort: true, width: 80, edit: 'text' }
+                            //    ]]
+                            //});
+
+
+                        });
+
+
+                    }
+                });
+                $("#searpro").on("click", function () {
+                    InitProductlist(table);
+                });
+
+                $("input").keyup(function () {
+                    if (event.keyCode == 13) {
+                        var inpname = $(this).attr("name");
+                        if (inpname == "namereload") {
+                            InitProductlist(table);
+                        }
+                    }
+                });
+            }
+          
+
+       
+
+
+        layui.use('table', function () {
+            var table = layui.table;
+            var form = layui.form;
+
+            function Searorder(table) {
+
+                var parm = getparms("#serchorder");
+                //cnname = parm.namereload;
+                parm = JSON.stringify(parm);
+                //var cnname = $("#nameReload").val();
+                if (parm == null && parm == "") {
+                    return false;
+                }
+                //第一个实例
+                table.render({
+                    id: "saleordertable"
+                    , elem: '#saleordermain'
+                    , height: 900
+                    , where: { paramList: parm }
+                    , url: '/Saleorder/GetSaleOrderList' //数据接口
+                    , page: true //开启分页
+                    , cols: [[ //表头                       
+                        { field: 'id', type: 'checkbox', title: 'id', width: 80 }
+                        , { field: 'adduser', title: '添加人id', width: 100, hide: true }
+                        , { field: 'saleuser', title: '所属销售id', width: 100, hide: true }
+                        , { field: 'audituser', title: '审核人id', width: 100, hide: true }
+                        , { field: 'Id', title: 'ID', width: 100 }
+                        , { field: 'orderno', title: '订单编号', width: 160 }
+
+                        , { field: 'prono', title: '产品编号', width: 100 }
+                        , { field: 'proname', title: '产品名称', width: 150 }
+                        , { field: 'prcasno', title: 'CAS号', width: 100 }
+                        , { field: 'prostand', title: '规格', width: 100 }
+
+                        , { field: 'customname', title: '客户名称', width: 150 }
+                        , { field: 'customid', title: '客户id', width: 200, hide: true }
+                        , { field: 'addname', title: '添加人', width: 100 }
+                        , { field: 'selename', title: '所属销售', width: 100 }
+                        , { field: 'auitname', title: '审核人', width: 100 }
+                        , {
+                            field: 'auditstatus', title: '审核状态', width: 100, templet: function (row) {
+                                return FormatOrderStatus(row.auditstatus);
+                            }
+                            }
+                        , {
+                            field: 'executionstatus', title: '执行状态', templet: function (row) {
+                                return ExcuteStatus(row.executionstatus);
+                            }, width: 100
+                        }, {
+                            field: 'orderdate', title: '订单日期', width: 150, templet: function (row) {
+                                return FormatStringDate(row.adddate);
+                            }
+                        }
+                        , {
+                            field: 'auditdate', title: '审核日期', width: 150, sort: true, templet: function (row) {
+                                return FormatStringDate(row.adddate);
+                            }
+                        }
+                        , {
+                            field: 'uptimedate', title: '修改时间', templet: function (row) {
+                                return FormatStringDate(row.uptimedate);
+                            }
+                        }
+                    ]]
+                });
+            }
+            function InitCustomlist(form) {
+
+                //加载品牌下拉列表
+                $.ajax({
+                    url: '/Custom/GetCustomList',
+                    dataType: 'json',
+                    type: 'post',
+                    success: function (data) {
+                        var branddata = data.data;
+                        if (branddata != null && branddata != "") {
+                            $('#selcustom').empty();
+                            form.render();
+                            $('#selcustom').append('<option value="">请选择</option>');
+                            $.each(branddata, function () {
+                                var custom = this;
+                                //$('#slecata').append(new Option(brand.cataname, brand.Id));//往下拉菜单里添加元素
+                                $('#selcustom').append('<option value="' + custom.Id + '">' + custom.name + '</option>');//往下拉菜单里添加元素
+                            });
+                        }
+                        form.render();
+                    }
+                });
+            }
+            function InitUserlist(form) {
+
+                //加载品牌下拉列表
+                $.ajax({
+                    url: '/Users/GetUsersList',
+                    dataType: 'json',
+                    type: 'post',
+                    success: function (data) {
+                        var branddata = data.data;
+                        if (branddata != null && branddata != "") {
+                            $('#selsaleuser').empty();
+                            form.render();
+                            $('#selsaleuser').append('<option value="">请选择</option>');
+                            $.each(branddata, function () {
+                                var users = this;
+                                //$('#slecata').append(new Option(brand.cataname, brand.Id));//往下拉菜单里添加元素
+                                $('#selsaleuser').append('<option value="' + users.Id + '">' + users.name + '</option>');//往下拉菜单里添加元素
+                            });
+                        }
+                        form.render();
+                    }
+                });
+            }
+
+            $("#btnaddSaleorder").on("click", function () {
+                addproduct(false, form);
+            });
+            $("#btnsaleorderedit").click(function () {
+                var datarows = getRows("saleordertable", table);
+                if (datarows.length > 0 && datarows.length <= 1) {
+                    addproduct(false, form);
+                    var rows = datarows[0];
+                    $("input", $("#addsaleorderdlg")).each(function () {
+
+                        var name = $(this).attr("name");
+                        for (var i in rows) {
+                            if (name == i) {
+                                $(this).val(rows[i]);
+                            }
+                        }
+
+                    });
+                } else if (datarows.length > 1) {
+                    layer.alert('只能选中一行要编辑的数据！', { icon: 6 });
+                    return false;
+                }
+                InitCustomlist(form);
+                InitUserlist(form);
+
+            });
+
+            Searorder(table);
+            $("#searchorderss").on("click", function () {
+                Searorder(table);
+            });
+
+            $('input[name=orderno]').keyup(function () {
+                if (event.keyCode == 13) {
+                    Searorder(table);
+                }
+            });
+
+
+            $("#btndelsaleorder").click(function () {
+                var datarows = getRows("saleordertable", table);
+                var strid = "";
+                if (datarows.length > 0 && datarows.length <= 1) {
+                    strid = datarows[0].Id;
+                } else if (datarows.length > 1) {
+
+                    for (var i = 0; i < datarows.length; i++) {
+                        if (strid == "") {
+                            strid = datarows[i];
+                        } else {
+                            strid = strid + "," + datarows[i];
+                        }
+                    }
+                }
+                if (strid != "" && strid != null) {
+                    $.ajax({
+                        type: "post",
+                        url: "/Saleorder/delsaleorder",
+                        data: { strid: strid },
+                        dataType: "json",
+                        success: function (data) {
+                            table.reload("saleordertable")
+                        }
+                    });
+                } else {
+                    layer.alert('请选中一行要删除的数据！', { icon: 6 });
+                }
+
+            });
+            $("#btndelsaleorder").click(function () {
+                var datarows = getRows("saleordertable", table);
+                var strid = "";
+                if (datarows.length > 0 && datarows.length <= 1) {
+                    strid = datarows[0].Id;
+                } else if (datarows.length > 1) {
+
+                    for (var i = 0; i < datarows.length; i++) {
+                        if (strid == "") {
+                            strid = datarows[i];
+                        } else {
+                            strid = strid + "," + datarows[i];
+                        }
+                    }
+                }
+                if (strid != "" && strid != null) {
+                    $.ajax({
+                        type: "post",
+                        url: "/Saleorder/delsaleorder",
+                        data: { strid: strid },
+                        dataType: "json",
+                        success: function (data) {
+                            table.reload("saleordertable")
+                        }
+                    });
+                } else {
+                    layer.alert('请选中一行要删除的数据！', { icon: 6 });
+                }
+
+            });
+            //审核按钮
+            $("#btnsaleaudit").click(function () {
+                shenhe(2)
+            });
+             //撤销审核按钮
+            $("#btnsalecancelaudit").click(function () {
+                shenhe(1)
+            });
+            //获取订单id
+            function getstrid() {
+                var datarows = getRows("saleordertable", table);
+                var strid = "";
+                if (datarows.length > 0 && datarows.length <= 1) {
+                    strid = datarows[0].Id;
+                } else if (datarows.length > 1) {
+
+                    for (var i = 0; i < datarows.length; i++) {
+                        if (strid == "") {
+                            strid = datarows[i];
+                        } else {
+                            strid = strid + "," + datarows[i];
+                        }
+                    }
+                }
+                return strid;
+            }
+            function shenhe(type) {
+                var strid = getstrid();
+                if (strid != "" && strid != null) {
+                    $.ajax({
+                        type: "post",
+                        url: "/Saleorder/AuduitSaleOrder",
+                        data: { strid: strid, type: type },
+                        dataType: "json",
+                        success: function (data) {
+                            table.reload("saleordertable")
+                        }
+                    });
+                } else {
+                    layer.alert('请选中一行要操作的数据！', { icon: 6 });
+                }
+            }
+            //<button class="layui-btn" id="btnsaleaudit">审核</button>
+            //    <button class="layui-btn" id="btnsalecancelaudit">撤销审核</button>
+
+
+            function addproduct(isedit, form) {
+
+                var titel = "添加订单";
+                if (isedit) {
+                    titel = "编辑订单";
+                }
+                layer.open({
+                    type: 1 //Page层类型
+                    , area: ['1000px', '650px']
+                    , title: titel
+                    , shade: 0.6 //遮罩透明度
+                    , maxmin: true //允许全屏最小化
+                    , anim: 1 //0-6的动画形式，-1不开启
+                    , content: $('#addsaleorderdlg')
+                });
+                InitCustomlist(form);
+                InitUserlist(form)
+
+                //InitProductlist(table);
+                if (!isedit) {
+                    $.ajax({
+                        type: "get",
+                        url: "/Saleorder/GetOrderNewNo",
+                        dataType: "json",
+                        success: function (data) {
+                            var orderno = data.data;
+                            $("#orderorid").val(orderno);
+                            $("#orderorid").attr("readOnly", "true");
+
+                        }
+                    });
+                }
+
+            }
+
+        });
+
+        function btnadd() {
+            var ent = {};
+            var iscansave = true;
+            $("input", $("#addsaleorderdlg")).each(function () {
+                var name = $(this).attr("name");
+                if (name != null && name != "") {
+                    ent[name] = $(this).val();
+                }
+                //if ($(this).val() == null || $(this).val() == "") {
+                //    iscansave = false;
+                //}
+
+            });
+            ent["executionstatus"] = $("#selexecutionstatus").val();
+            ent["customid"] = $("#selcustom").val();
+            ent["saleuser"] = $("#selsaleuser").val();
+            $.ajax({
+                type: "get",
+                url: "/Saleorder/addsaleorder",
+                data: ent,
+                dataType: "json",
+                success: function (data) {
+
+                }
+            });
+
+
+        }
+
+    </script>
+</body>
+</html>
